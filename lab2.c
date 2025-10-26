@@ -51,12 +51,15 @@ int main() {
 			perror("waitpid failed");
 			continue;
 		}
+		//check if child exited normally and print status
 		if(WIFEXITED(status)){
 			printf("Child %d exited normally with status %d\n", wpid, WIFEXITED(status));
 		}
+		//check if child was terminated by a signal and then print the signal number
 		else if(WIFSIGNALED(status)){
 			printf("Child %d terminated by signal %d\n", wpid, WTERMSIG(status));
 		}
+		//handle any other abnormal termination and print the message for it
 		else{
 			printf("Child %d ended abnormally\n", wpid);
 		}
