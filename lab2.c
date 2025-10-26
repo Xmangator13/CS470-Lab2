@@ -47,6 +47,7 @@ int main() {
 	for(int i = 0; i < 10; i++){
 		int status;
 		pid_t wpid = waitpid(pids[i], &status, 0);
+		//handle the wpid fail
 		if(wpid == -1){
 			perror("waitpid failed");
 			continue;
